@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const App = () => (
-  <div>
-    <h2>Gift Giver</h2>
-  </div>
-);
+class App extends Component {
+  state = {
+    gifts: [],
+  }
+
+  render() {
+    return (
+      <div>
+        <h2>Gift Giver</h2>
+      </div>
+    );
+  }
+}
 
 export default App;
