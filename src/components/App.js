@@ -35,7 +35,11 @@ class App extends Component {
         <div className="gift-list">
           {
             gifts.map(gift => (
-              <Gift key={gift.id} />
+              <Gift
+                key={gift.id}
+                gift={gift}
+                removeGift={this.removeGift}
+              />
             ))
           }
         </div>

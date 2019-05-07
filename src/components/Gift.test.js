@@ -7,7 +7,13 @@ import Gift from './Gift';
 configure({ adapter: new Adapter() });
 
 describe('Gift', () => {
-  const wrapper = shallow(<Gift />);
+  const mockRemove = jest.fn();
+  const id = 1;
+  const props = {
+    gift: { id },
+    removeGift: mockRemove,
+  };
+  const wrapper = shallow(<Gift {...props} />);
 
   it('renders properly', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
@@ -38,6 +44,16 @@ describe('Gift', () => {
 
     it('updates the present in `state`', () => {
       expect(wrapper.state().present).toEqual(present);
+    });
+  });
+
+  describe('when clicking the `remove Gift` button', () => {
+    beforeEach(() => {
+      wrapper.find('.btn-remove').simulate('click');
+    });
+
+    it('call removeGift callback', () => {
+      expect(mockRemove).toHaveBeenCalledWith(id);
     });
   });
 });

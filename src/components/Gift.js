@@ -1,4 +1,6 @@
+/* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
 
 class Gift extends Component {
@@ -7,7 +9,19 @@ class Gift extends Component {
     present: '',
   }
 
+  static propTypes = {
+    gift: PropTypes.objectOf(PropTypes.any),
+    removeGift: PropTypes.func,
+  };
+
+  static defaultProps = {
+    gift: {},
+    removeGift: () => { },
+  };
+
   render() {
+    const { gift, removeGift } = this.props;
+
     return (
       <div>
         <Form>
@@ -27,6 +41,13 @@ class Gift extends Component {
             />
           </Form.Group>
         </Form>
+
+        <Button
+          className="btn-remove"
+          onClick={() => removeGift(gift.id)}
+        >
+          Remove Gift
+        </Button>
       </div>
     );
   }
