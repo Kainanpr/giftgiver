@@ -7,31 +7,29 @@ import App from './App';
 configure({ adapter: new Adapter() });
 
 describe('App', () => {
-  const app = shallow(<App />);
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallow(<App />);
+  });
 
   it('renders correctly', () => {
-    expect(toJson(app)).toMatchSnapshot();
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 
   it('initializes the `state` with an empty list of gifts', () => {
-    expect(app.state().gifts).toEqual([]);
+    expect(wrapper.state().gifts).toEqual([]);
   });
 
   describe('when clicking the `add-gift` button', () => {
-    beforeEach(() => {
-      app.find('.btn-add').simulate('click');
-    });
-
-    afterEach(() => {
-      app.setState({ gifts: [] });
-    });
-
     it('adds a new gift to `state`', () => {
-      expect(app.state().gifts).toEqual([{ id: 1 }]);
+      wrapper.find('.btn-add').simulate('click');
+      expect(wrapper.state().gifts).toEqual([{ id: 1 }]);
     });
 
     it('add a new gift to the rendered list', () => {
-      expect(app.find('.gift-list').children().length).toEqual(1);
+      wrapper.find('.btn-add').simulate('click');
+      expect(wrapper.find('.gift-list').children().length).toEqual(1);
     });
   });
 });
