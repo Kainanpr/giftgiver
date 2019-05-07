@@ -38,5 +38,12 @@
     "eslint-config-airbnb": "^17.1.0",
     "jest-cli": "^24.8.0",
     "react-test-render": "^1.1.1"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/index.js"
+    ],
+    "snapshotSerializers": ["enzyme-to-json/serializer"]
   }
 }
