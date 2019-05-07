@@ -31,5 +31,10 @@ describe('App', () => {
       wrapper.find('.btn-add').simulate('click');
       expect(wrapper.find('.gift-list').children().length).toEqual(1);
     });
+
+    it('creates a Gift component', () => {
+      wrapper.find('.btn-add').simulate('click');
+      expect(wrapper.find('Gift').exists()).toBe(true);
+    });
   });
 });
