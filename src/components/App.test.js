@@ -22,19 +22,32 @@ describe('App', () => {
   });
 
   describe('when clicking the `add-gift` button', () => {
-    it('adds a new gift to `state`', () => {
+    const id = 1;
+
+    beforeEach(() => {
       wrapper.find('.btn-add').simulate('click');
-      expect(wrapper.state().gifts).toEqual([{ id: 1 }]);
+    });
+
+    it('adds a new gift to `state`', () => {
+      expect(wrapper.state().gifts).toEqual([{ id }]);
     });
 
     it('add a new gift to the rendered list', () => {
-      wrapper.find('.btn-add').simulate('click');
       expect(wrapper.find('.gift-list').children().length).toEqual(1);
     });
 
     it('creates a Gift component', () => {
-      wrapper.find('.btn-add').simulate('click');
       expect(wrapper.find('Gift').exists()).toBe(true);
+    });
+
+    describe('and the user wants to remove the added gift', () => {
+      beforeEach(() => {
+        wrapper.instance().removeGift(id);
+      });
+
+      it('remves the gift from `state`', () => {
+        expect(wrapper.state().gifts).toEqual([]);
+      });
     });
   });
 });
