@@ -10,7 +10,7 @@ class App extends Component {
     const { gifts } = this.state;
     const newGifts = [...gifts];
 
-    const nextId = gifts.length > 0 ? gifts.length : 0;
+    const nextId = gifts.length || 0;
 
     newGifts.push({ id: nextId + 1 });
 
@@ -18,9 +18,20 @@ class App extends Component {
   }
 
   render() {
+    const { gifts } = this.state;
+
     return (
       <div>
         <h2>Gift Giver</h2>
+        <div className="gift-list">
+          {
+            gifts.map(gift => (
+              <div key={gift.id}>
+                { gift }
+              </div>
+            ))
+          }
+        </div>
         <Button className="btn-add" onClick={this.addGift}>Add Gift</Button>
       </div>
     );
