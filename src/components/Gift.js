@@ -23,7 +23,7 @@ class Gift extends Component {
     const { gift, removeGift } = this.props;
 
     return (
-      <div>
+      <div className="gift">
         <Form>
           <Form.Group>
             <Form.Label>Person</Form.Label>
